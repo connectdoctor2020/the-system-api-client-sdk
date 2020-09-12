@@ -1,0 +1,13 @@
+{
+  "name": "my-doctor-api-client",
+  "version": "1.0.0",
+  "description": "My Doctor API Client",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "sdk:build": "openapi-generator generate -i ./api-swagger-docs.json -g typescript-angular -o ./",
+    "sdk:pack": "npm pack"
+  },
+  "author": "Suryakand Shinde",
+  "license": "ISC"
+}
