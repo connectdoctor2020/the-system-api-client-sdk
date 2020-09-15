@@ -17,10 +17,6 @@ export interface CreateAppointmentOrderDto {
      */
     startTime: Date;
     /**
-     * End Time
-     */
-    endTime: Date;
-    /**
      * Doctor Id
      */
     doctorUserId: number;
