@@ -1367,11 +1367,6 @@
             "type": "string",
             "description": "Start Time"
           },
-          "endTime": {
-            "format": "date-time",
-            "type": "string",
-            "description": "End Time"
-          },
           "doctorUserId": {
             "type": "number",
             "description": "Doctor Id"
@@ -1387,7 +1382,6 @@
         },
         "required": [
           "startTime",
-          "endTime",
           "doctorUserId",
           "patientUserId",
           "consultationId"
@@ -6914,7 +6908,7 @@
         ],
         "responses": {
           "201": {
-            "description": "Disable a Doctor Consultation",
+            "description": "Enable a Doctor Consultation",
             "content": {
               "application/json": {
                 "schema": {
@@ -7164,7 +7158,7 @@
         ]
       }
     },
-    "/rest/api/appointments/availability/{doctorUserId}/{consultationId}/{date}/{interval}": {
+    "/rest/api/appointments/availability/{doctorUserId}/{consultationId}/{date}": {
       "get": {
         "operationId": "AppointmentsController_getAvailableAppointments",
         "parameters": [
@@ -7190,14 +7184,6 @@
             "in": "path",
             "schema": {
               "type": "string"
-            }
-          },
-          {
-            "name": "interval",
-            "required": true,
-            "in": "path",
-            "schema": {
-              "type": "number"
             }
           }
         ],
