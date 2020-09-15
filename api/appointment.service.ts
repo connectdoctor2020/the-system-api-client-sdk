@@ -484,14 +484,13 @@ export class AppointmentService {
      * @param doctorUserId 
      * @param consultationId 
      * @param date 
-     * @param interval 
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public appointmentsControllerGetAvailableAppointments(doctorUserId: number, consultationId: number, date: string, interval: number, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json'}): Observable<Array<Appointment>>;
-    public appointmentsControllerGetAvailableAppointments(doctorUserId: number, consultationId: number, date: string, interval: number, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json'}): Observable<HttpResponse<Array<Appointment>>>;
-    public appointmentsControllerGetAvailableAppointments(doctorUserId: number, consultationId: number, date: string, interval: number, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json'}): Observable<HttpEvent<Array<Appointment>>>;
-    public appointmentsControllerGetAvailableAppointments(doctorUserId: number, consultationId: number, date: string, interval: number, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json'}): Observable<any> {
+    public appointmentsControllerGetAvailableAppointments(doctorUserId: number, consultationId: number, date: string, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json'}): Observable<Array<Appointment>>;
+    public appointmentsControllerGetAvailableAppointments(doctorUserId: number, consultationId: number, date: string, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json'}): Observable<HttpResponse<Array<Appointment>>>;
+    public appointmentsControllerGetAvailableAppointments(doctorUserId: number, consultationId: number, date: string, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json'}): Observable<HttpEvent<Array<Appointment>>>;
+    public appointmentsControllerGetAvailableAppointments(doctorUserId: number, consultationId: number, date: string, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json'}): Observable<any> {
         if (doctorUserId === null || doctorUserId === undefined) {
             throw new Error('Required parameter doctorUserId was null or undefined when calling appointmentsControllerGetAvailableAppointments.');
         }
@@ -500,9 +499,6 @@ export class AppointmentService {
         }
         if (date === null || date === undefined) {
             throw new Error('Required parameter date was null or undefined when calling appointmentsControllerGetAvailableAppointments.');
-        }
-        if (interval === null || interval === undefined) {
-            throw new Error('Required parameter interval was null or undefined when calling appointmentsControllerGetAvailableAppointments.');
         }
 
         let headers = this.defaultHeaders;
@@ -532,7 +528,7 @@ export class AppointmentService {
             responseType = 'text';
         }
 
-        return this.httpClient.get<Array<Appointment>>(`${this.configuration.basePath}/rest/api/appointments/availability/${encodeURIComponent(String(doctorUserId))}/${encodeURIComponent(String(consultationId))}/${encodeURIComponent(String(date))}/${encodeURIComponent(String(interval))}`,
+        return this.httpClient.get<Array<Appointment>>(`${this.configuration.basePath}/rest/api/appointments/availability/${encodeURIComponent(String(doctorUserId))}/${encodeURIComponent(String(consultationId))}/${encodeURIComponent(String(date))}`,
             {
                 responseType: <any>responseType,
                 withCredentials: this.configuration.withCredentials,
