@@ -318,40 +318,6 @@
         "type": "object",
         "properties": {}
       },
-      "GetManyDoctorProfileResponseDto": {
-        "type": "object",
-        "properties": {
-          "data": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/DoctorProfile"
-            }
-          },
-          "count": {
-            "type": "number"
-          },
-          "total": {
-            "type": "number"
-          },
-          "page": {
-            "type": "number"
-          },
-          "pageCount": {
-            "type": "number"
-          }
-        },
-        "required": [
-          "data",
-          "count",
-          "total",
-          "page",
-          "pageCount"
-        ]
-      },
-      "DoctorProfile": {
-        "type": "object",
-        "properties": {}
-      },
       "PatientProfileDto": {
         "type": "object",
         "properties": {
@@ -1170,6 +1136,40 @@
         "required": [
           "entries"
         ]
+      },
+      "GetManyDoctorProfileResponseDto": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/DoctorProfile"
+            }
+          },
+          "count": {
+            "type": "number"
+          },
+          "total": {
+            "type": "number"
+          },
+          "page": {
+            "type": "number"
+          },
+          "pageCount": {
+            "type": "number"
+          }
+        },
+        "required": [
+          "data",
+          "count",
+          "total",
+          "page",
+          "pageCount"
+        ]
+      },
+      "DoctorProfile": {
+        "type": "object",
+        "properties": {}
       },
       "DeleteResult": {
         "type": "object",
@@ -2145,11 +2145,35 @@
         },
         "responses": {
           "201": {
-            "description": "Update Doctor photo",
+            "description": "Update profile photo",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/DoctorProfile"
+                  "$ref": "#/components/schemas/User"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "User Profile"
+        ],
+        "security": [
+          {
+            "basic": []
+          }
+        ]
+      },
+      "delete": {
+        "operationId": "UserProfileController_removeProfilePhoto",
+        "parameters": [],
+        "responses": {
+          "201": {
+            "description": "Delete profile photo",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/User"
                 }
               }
             }
@@ -5158,6 +5182,79 @@
         "responses": {
           "200": {
             "description": "Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/User"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Admin"
+        ],
+        "security": [
+          {
+            "basic": []
+          }
+        ]
+      },
+      "get": {
+        "operationId": "getOneBaseUserAccountAdminControllerUser",
+        "summary": "Retrieve one User",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "fields",
+            "description": "Selects resource fields. <a href=\"https://github.com/nestjsx/crud/wiki/Requests#select\" target=\"_blank\">Docs</a>",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "style": "form",
+            "explode": false
+          },
+          {
+            "name": "join",
+            "description": "Adds relational resources. <a href=\"https://github.com/nestjsx/crud/wiki/Requests#join\" target=\"_blank\">Docs</a>",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "style": "form",
+            "explode": true
+          },
+          {
+            "name": "cache",
+            "description": "Reset cache (if was enabled). <a href=\"https://github.com/nestjsx/crud/wiki/Requests#cache\" target=\"_blank\">Docs</a>",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 1
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Get one base response",
             "content": {
               "application/json": {
                 "schema": {
