@@ -6,7 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "sdk:build": "openapi-generator generate -i ./api-swagger-docs.json -g typescript-angular -o ./",
-    "sdk:pack": "npm pack"
+    "sdk:pack": "npm pack",
+    "sdk:build:dart": "npx openapi-generator generate -i ./api-swagger-docs.json -g dart -o ./dart"
   },
   "author": "Suryakand Shinde",
   "license": "ISC"
